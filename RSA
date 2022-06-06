@@ -1,0 +1,24 @@
+from math import gcd
+p = int(input("Enter large prime number:"))
+q = int(input("Enter large prime number:"))
+n = p * q
+phi = (p-1)*(q-1)
+print(phi)
+for i in range(2, phi):
+ if gcd(i,phi) == 1:
+ e = i
+ break
+print(e)
+d = pow(e,-1,phi)
+Msg=int(input("Enter message number:"))
+encryptedMsg = pow(Msg, e, n)
+decryptedMsg = pow(encryptedMsg, d, n)
+print("Public key (e, n):")
+print("\te = ", e)
+print("\nPrivate key (d, n):")
+print("\td = ", d)
+print("Value of n:")
+print("\tn = ", n)
+print("\nOriginal message string:\n\t", Msg)
+if Msg == decryptedMsg:
+ print("\nThe decrypted message and the original encoded message match.")
